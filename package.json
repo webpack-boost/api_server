@@ -1,0 +1,21 @@
+{
+  "name": "api_server",
+  "version": "1.0.0",
+  "description": "express练习",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "prepare": "husky install"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/webpack-boost/api_server.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/webpack-boost/api_server/issues"
+  },
+  "homepage": "https://github.com/webpack-boost/api_server#readme"
+}
