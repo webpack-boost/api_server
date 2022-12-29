@@ -18,15 +18,25 @@
     "url": "https://github.com/webpack-boost/api_server/issues"
   },
   "homepage": "https://github.com/webpack-boost/api_server#readme",
+  "dependencies": {
+    "@escook/express-joi": "^1.1.1",
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "express-jwt": "^5.3.3",
+    "joi": "^17.7.0",
+    "jsonwebtoken": "^8.5.1",
+    "mysql": "^2.18.1"
+  },
   "devDependencies": {
+    "eslint": "^8.30.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-plugin-import": "^2.26.0",
     "husky": "^8.0.2",
-    "lint-staged": "^13.1.0"
+    "lint-staged": "^13.1.0",
+    "prettier": "2.8.1"
   },
   "lint-staged": {
-    "*.{vue,js,ts,jsx,tsx}": [
-      "yarn prettier",
-      "yarn lint"
-    ]
+    "**/*": "prettier --write --ignore-unknown"
   }
-
 }
