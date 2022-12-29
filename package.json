@@ -22,5 +22,11 @@
     "husky": "^8.0.2",
     "lint-staged": "^13.1.0"
   },
-  "lint-staged": {}
+  "lint-staged": {
+    "*.{vue,js,ts,jsx,tsx}": [
+      "yarn prettier",
+      "yarn lint"
+    ]
+  }
+
 }
