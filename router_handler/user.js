@@ -14,7 +14,7 @@ const config = require('../config')
 
 exports.userRegister = (req, res) => {
   const body = req.body
-
+  console.log(req.body)
   // 判断客户端是否合法，局部中间件expressJoi处理
 
   // 查找数据库中是否已有用户存在

@@ -13,9 +13,9 @@ const {
   delete_user_schema
 } = require('../schema/user')
 
-router.get("/userInfo", getUserInfo)
+router.get('/userInfo', getUserInfo)
 
-router.put('/userInfo', expressJoi(update_user_schema),updateBaseInfo)
+router.put('/userInfo', expressJoi(update_user_schema), updateBaseInfo)
 
 router.put('/reset/pwd', expressJoi(reset_password_schema), resetPassword)
 
