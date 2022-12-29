@@ -17,5 +17,10 @@
   "bugs": {
     "url": "https://github.com/webpack-boost/api_server/issues"
   },
-  "homepage": "https://github.com/webpack-boost/api_server#readme"
+  "homepage": "https://github.com/webpack-boost/api_server#readme",
+  "devDependencies": {
+    "husky": "^8.0.2",
+    "lint-staged": "^13.1.0"
+  },
+  "lint-staged": {}
 }
