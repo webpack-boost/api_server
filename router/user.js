@@ -1,8 +1,9 @@
 const express = require('express')
+const expressJoi = require('@escook/express-joi')
+
 const router = express.Router()
 const userHandler = require('../router_handler/user')
 // 导入验证数据的中间件
-const expressJoi = require('@escook/express-joi')
 
 // 导入验证规则
 const { reg_login_schema } = require('../schema/user')

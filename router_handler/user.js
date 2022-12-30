@@ -1,10 +1,10 @@
-const db = require('../db/index')
 // 导入加密模块
 const bcrypt = require('bcryptjs')
 // 导入jsonwebtoken生成token字符串
 const jwt = require('jsonwebtoken')
 // 导入jwt配置文件
 const config = require('../config')
+const db = require('../db/index')
 
 /**
  * 用户注册路由的处理函数
@@ -13,7 +13,7 @@ const config = require('../config')
  */
 
 exports.userRegister = (req, res) => {
-  const body = req.body
+  const { body } = req.body
   console.log(req.body)
   // 判断客户端是否合法，局部中间件expressJoi处理
 
@@ -31,9 +31,9 @@ exports.userRegister = (req, res) => {
       body.password = bcrypt.hashSync(body.password, 10)
       // 向数据库插入一条数据
       const sql = `insert into ev_users (username, password) values ('${body.username}', '${body.password}')`
-      db.query(sql, (err, result) => {
-        if (err) {
-          res.errorHandler(err, 500)
+      db.query(sql, (error, result) => {
+        if (error) {
+          res.errorHandler(error, 500)
           return
         }
         // 如果执行的是insert语句，res是一个对象，res.affectedRows === 1 代表插入成功
@@ -51,7 +51,7 @@ exports.userRegister = (req, res) => {
 }
 
 exports.userLogin = (req, res) => {
-  const body = req.body
+  const { body } = req.body
 
   // 检查用户名或密码是否合法，局部中间件expressJoi处理
 
@@ -61,18 +61,21 @@ exports.userLogin = (req, res) => {
   db.query(sql, (err, result) => {
     // 执行语句失败
     if (err) {
-      return res.errorHandler(err)
+      res.errorHandler(err)
+      return
     }
     // 执行语句成功，但是获取的条数不等于1
     if (result.length !== 1) {
-      return res.errorHandler('登录失败')
+      res.errorHandler('登录失败')
+      return
     }
 
     // 比较用户名密码是否与数据库中一致，bcrypt.compareSync(用户提交的密码，数据库存储的密码)
     const passwordCompareRes = bcrypt.compareSync(body.password, result[0].password)
     // 密码不一致
     if (!passwordCompareRes) {
-      return res.errorHandler('密码错误！')
+      res.errorHandler('密码错误！')
+      return
     }
 
     // 获取用户信息，剔除密码及头像
@@ -85,7 +88,7 @@ exports.userLogin = (req, res) => {
     res.send({
       code: 0,
       data: {
-        token: 'Bearer ' + token
+        token: `Bearer ${token}`
       },
       message: `欢迎您, ${body.username}`
     })

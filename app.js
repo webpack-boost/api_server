@@ -4,14 +4,13 @@
 const express = require('express')
 const cors = require('cors')
 const expressJwt = require('express-jwt')
+// 导入验证规则
+const Joi = require('joi')
 const config = require('./config')
 
 // 导入路由模块
 const userRouter = require('./router/user')
 const userInfoRouter = require('./router/userInfo')
-
-// 导入验证规则
-const Joi = require('joi')
 
 const app = express()
 
@@ -42,11 +41,13 @@ app.use((err, req, res, next) => {
   // 验证失败的错误
   if (err instanceof Joi.ValidationError) {
     // 必须加return，express不允许连续调用res.send方法
-    return res.errorHandler(err)
+    res.errorHandler(err)
+    return
   }
   // 身份认证失败的错误
   if (err.name === 'UnauthorizedError') {
-    return res.errorHandler('无效的token', 401, 1)
+    res.errorHandler('无效的token', 401, 1)
+    return
   }
   // 未知错误
   res.errorHandler(err)

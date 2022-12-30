@@ -1,5 +1,6 @@
 const express = require('express')
 const expressJoi = require('@escook/express-joi')
+
 const router = express.Router()
 const {
   getUserInfo,
@@ -20,5 +21,7 @@ router.put('/userInfo', expressJoi(update_user_schema), updateBaseInfo)
 router.put('/reset/pwd', expressJoi(reset_password_schema), resetPassword)
 
 router.delete('/delete/:id', expressJoi(delete_user_schema), deleteUser)
+
+const x = 1
 
 module.exports = router
